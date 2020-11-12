@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Summaries.Data
 {
@@ -6,27 +7,40 @@ namespace Summaries.Data
     {
         public void AddBook(Book newBook)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteBook(int id)
-        {
-            throw new System.NotImplementedException();
+            Data.Books.Add(newBook);
         }
 
         public List<Book> GetAllBooks()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Book GetBookById(int id)
-        {
-            throw new System.NotImplementedException();
+            return Data.Books.ToList();
         }
 
         public void UpdateBook(int id, Book newBook)
         {
-            throw new System.NotImplementedException();
+            var oldBook = Data.Books.FirstOrDefault(n => n.Id == id);
+            if (oldBook != null)
+            {
+                oldBook.Title = newBook.Title;
+                oldBook.Author = newBook.Author;
+                oldBook.Description = newBook.Description;
+                oldBook.Rate = newBook.Rate;
+                oldBook.DateStart = newBook.DateStart;
+                oldBook.DateRead = newBook.DateRead;
+            }
         }
+
+        public void DeleteBook(int id)
+        {
+            var book = Data.Books.FirstOrDefault(n => n.Id == id);
+            Data.Books.Remove(book);
+        }
+
+
+        public Book GetBookById(int id)
+        {
+            return Data.Books.FirstOrDefault(n => n.Id == id);
+        }
+
+
     }
 }
