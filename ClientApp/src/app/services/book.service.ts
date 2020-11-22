@@ -17,4 +17,8 @@ export class BookService {
   addBook(book: Book) {
     return this.http.post(this._baseURL + '/AddBook/', book);
   }
+
+  getBookById(bookId: number) {
+    return this.http.get(this._baseURL + '/SingleBook/' + bookId);
+  }
 }
