@@ -20,4 +20,12 @@ export class BooksComponent implements OnInit {
   showBook(bookId: number) {
     this.router.navigate(['/show-book/' + bookId]);
   }
+
+  updateBook(bookId: number) {
+    this.router.navigate(['/update-book/' + bookId]);
+  }
+
+  deleteBook(bookId: number) {
+    this.router.navigate(['/delete-book/' + bookId]);
+  }
 }
